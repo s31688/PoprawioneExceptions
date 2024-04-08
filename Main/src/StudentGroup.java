@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 public class StudentGroup {
     public String name;
-    public Student[] students;
+    public ArrayList<Student> students;
 
     public StudentGroup(String name) {
         this.name = name;
-        this.students = new Student[0];
+        this.students = new ArrayList<>();
     }
 
     public boolean isInGroup(Student student) {
@@ -16,24 +18,20 @@ public class StudentGroup {
         return false;
     }
 
-    public void addStudent(Student student) throws IllegalStateException{
-        Student[] studentsNew;
+    public void addStudent(Student student) throws IllegalStateException {
         try {
-            if(students.length >= 15 || isInGroup(student)){
+            if (students.size() >= 15 || isInGroup(student)) {
                 throw new IllegalStateException();
             }
-            if(students.length < 15 && !isInGroup(student)) {
-                studentsNew = new Student[students.length + 1];
-                System.arraycopy(students, 0, studentsNew, 0, students.length);
-                studentsNew[students.length] = student;
-                students = studentsNew;
+            if (students.size() < 15 && !isInGroup(student)) {
+                students.add(student);
             }
         } catch (IllegalStateException e) {
             e.getStackTrace();
-            if (students.length >= 15) {
+            if (students.size() >= 15) {
                 throw new IllegalStateException("To many students in that group. Student can't be added");
             }
-            if(isInGroup(student)) {
+            if (isInGroup(student)) {
                 throw new IllegalStateException("Student already added");
             }
         }

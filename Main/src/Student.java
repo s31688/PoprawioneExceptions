@@ -16,20 +16,19 @@ public class Student {
     }
 
     public double countAGP() throws ModifiedIllegalArgumentException {
-        double sum = 0.0;
+        double agp = 0.0;
         try {
-            if(grades == null || grades.length == 0 || grades.length > 20) {
+            if (grades.length == 0) {
                 throw new IllegalArgumentException();
             }
             for (double i : grades) {
-                sum += i;
+                agp += i;
             }
-            sum /= grades.length;
-            double agp = Math.round(sum) - Math.round(sum * 100) / 100.0;
-            if (agp < 0.75 && agp >= 0.5) {
-                return Math.round(sum) - 1;
+            agp /= grades.length;
+            if (agp - (int) agp >= 0.75) {
+                agp++;
             }
-            return Math.round(sum);
+            return (int) agp;
         } catch (ModifiedIllegalArgumentException e) {
             e.getStackTrace();
             throw new ModifiedIllegalArgumentException("No marks found. Invalid student", e);

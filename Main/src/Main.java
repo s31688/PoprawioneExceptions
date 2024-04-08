@@ -17,9 +17,9 @@ public class Main {
         studentGroup.addStudent(student3);
         studentGroup.addStudent(student4);
         studentGroup.addStudent(student5);
-        System.out.println(studentGroup.students.length);
-        for(int i = 0; i < studentGroup.students.length; i++) {
-            System.out.println(studentGroup.students[i].indexNumber);
+        System.out.println(studentGroup.students.size());
+        for (int i = 0; i < studentGroup.students.size(); i++) {
+            System.out.println(studentGroup.students.get(i).indexNumber);
         }
         //studentGroup.addStudent(student3);
         System.out.println(student4.countAGP());
